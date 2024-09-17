@@ -1,0 +1,128 @@
+
+Found 33:34:50:00:9c:59 'BBQOVN' 180a   // probe
+                                         
+Manufacturer Data: 
+                                                           
+D200-3334-5000-9C59, len: 8
+                                                    
+      3 4  P      Y
+
+
+-----------------------------------------------------------
+Found 33:34:50:00:9c:59 'BBQOVN' 180a
+Manufacturer Data:
+D200-3334-5000-9C59, len: 8
+      3 4  P      Y
+
+Connecting ...
+Connected
+Discovering attributes ...
+Attributes discovered
+
+Device name: BBQOVN
+Appearance: 0x0
+
+
+Service: 1800
+
+   Characteristic: 2a00, prop:  R, value: 4242-514F-564E, len: 6
+                                           B B  Q O  V N
+                Descriptor: 2803, value: 0205-0001-2A, len: 5
+                                                    *
+                Descriptor: 2a01, value: 0003, len: 2
+
+   Characteristic: 2a01, prop:  R, value: 0003, len: 2
+
+Service: 1801
+
+   Characteristic: 2a05, prop: 22, value: 0100-FFFF, len: 4
+                Descriptor: 2902, value: 0000, len: 2
+
+Service: 180a
+
+   Characteristic: 2a29, prop:  R, value: 4242-514F-564E, len: 6
+                                           B B  Q O  V N
+                Descriptor: 2803, value: 020E-0024-2A, len: 5
+                                                 $  *
+                Descriptor: 2a24, value: 4242-514F-564E, len: 6
+                                          B B  Q O  V N
+
+   Characteristic: 2a24, prop:  R, value: 4242-514F-564E, len: 6
+                                           B B  Q O  V N
+                Descriptor: 2803, value: 0210-0027-2A, len: 5
+                                                 '  *
+                Descriptor: 2a27, value: 5346-322E-3036, len: 6
+                                          S F  2 .  0 6
+
+   Characteristic: 2a27, prop:  R, value: 5346-322E-3036, len: 6
+                                           S F  2 .  0 6
+                Descriptor: 2803, value: 0212-0028-2A, len: 5
+                                                 (  *
+                Descriptor: 2a28, value: 5346-322E-3036, len: 6
+                                          S F  2 .  0 6
+
+   Characteristic: 2a28, prop:  R, value: 5346-322E-3036, len: 6
+                                           S F  2 .  0 6
+
+Service: 8800c4fb-a175-b666-2ebb-1e97e6fa47b3
+
+   Characteristic: 4c0a0ff9-1c6d-1c49-e07f-10f1c55905ca, prop: No
+                Descriptor: 2902, value: 0100, len: 2
+                Descriptor: 2901, value: 4242-514F-564E-2054-656D-7065-7261-7475-7265-2073-656E, len: 22
+                                          B B  Q O  V N    T  e m  p e  r a  t u  r e    s  e n
+
+Disconnecting ...
+Disconnected
+
+Service: 8800c4fb-a175-b666-2ebb-1e97e6fa47b3                                                                                           
+                                                                                                                                        
+   Characteristic: 4c0a0ff9-1c6d-1c49-e07f-10f1c55905ca, prop: No                                                                       
+                Descriptor: 2902, value: 0100, len: 2                                                                                   
+                Descriptor: 2901, value: 4242-514F-564E-2054-656D-7065-7261-7475-7265-2073-656E, len: 22                                
+                                          B B  Q O  V N    T  e m  p e  r a  t u  r e    s  e n 
+
+**** APPEARS That enable notify via Descriptor: 2902  write 0x01 to enable, 0x0 to disable
+      enables Descriptor: 2901 to send (notify) a 5 byte string.            '642b 3230 34' 
+      The last 3 bytes are ascii chars in degees c.  '642b 3230 34' => ascii 'd +  2 0  4' = 20.4C
+
+
+code:
+	#define AD_UUID "8800C4FBA175B6662EBB1E97E6FA47B3"  // BBQOVN probe temperature Service
+	#define DEV_ADR "33:34:50:00:9c:59"                 // BBQOVN probe adr
+
+    // if (peripheral.deviceName().startsWith("Mopeka"))  // name unknown until connected(?)
+    // if (peripheral.advertisedServiceUuid() == AD_UUID)
+    if (peripheral.address() == DEV_ADR)
+    {
+      Serial.println();
+      BLE.stopScan();
+      explorerPeripheral(peripheral); // get/print device details
+      while (1)                       // peripheral disconnected, finished
+      {
+      }
+    }
+
+--------------------------------------------------------------------------------------
+
+
+
+
+Found 32:34:50:00:a1:85 'BBQOVN-C' 180a      // base unit
+                                       
+Manufacturer Data: 
+                                                           
+5900-3234-5000-A185, len: 8
+                                                    
+ Y    2 4  P       
+  
+
+
+
+Found 32:34:50:00:a1:85 'BBQOVN-C' 180a
+                                       
+Manufacturer Data: 
+                                                           
+5900-3234-5000-A185, len: 8
+                                                    
+ Y    2 4  P       
+ 
